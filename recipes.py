@@ -34,3 +34,15 @@ def fill_cook_book():
                 ingredients = []
     return cook_book
 print(fill_cook_book())
+
+def get_shop_list_by_dishes(dishes, person_count):
+    cook_book = fill_cook_book()
+    result = {}
+    for key in cook_book.keys():
+        for dish in dishes:
+            if key.__eq__(dish):
+                values = cook_book[key]
+                for value in values:
+                    result[value['ingredient_name']] = {'measure': value['measure'], 'quantity': int(value['quantity']) * person_count}
+    return dict(sorted(result.items()))
+print(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
